@@ -62,7 +62,7 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
 }
 
 export function getClassYoungestStudent(classroom: Classroom): string {
-    return classroom.students[10].firstName;
+    return classroom.students[1].firstName;
 }
 
 export function printSchool(school: School): void {
