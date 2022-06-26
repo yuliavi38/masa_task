@@ -23,6 +23,7 @@ export function initializeSchool(): School {
 
     const mathClass: Classroom = createClassroom("Math", teacher1, [student1, student2, student3, student4]);
     const geographyClass: Classroom = createClassroom("Geography", teacher1, [student5, student6, student7, student8]);
+    const historyClass: Classroom = createClassroom("History", teacher3, [student5, student6, student7, student8]);
 
     return {
         name: "Big school",
@@ -30,7 +31,8 @@ export function initializeSchool(): School {
         phone: "+7 (916) 000 12 21",
         classes: [
             mathClass,
-            geographyClass
+            geographyClass,
+            historyClass
         ]
     }
 }
