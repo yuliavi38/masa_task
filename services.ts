@@ -88,9 +88,9 @@ export function printSchool(school: School): void {
     console.log("============");
 
     school.classes.forEach(function (classRoom, index) {
-        console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.firstName} ${classRoom.teacher.lastName}, ${classRoom.teacher.professions}`)
+        console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.fullName}, ${classRoom.teacher.professions}`)
         classRoom.students.forEach(function (student, index) {
-            console.log(`${index+1}: ${student.firstName} ${student.lastName}: ${student.age()}`)
+            console.log(`${index+1}: ${student.fullName}: ${student.age()}`)
 
         });
     });

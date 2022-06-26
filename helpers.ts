@@ -10,5 +10,5 @@ export function getRandomBirthDate(): Date {
 }
 
 export function fullName(firstName: string, lastName: string): any {
-    return `${firstName}  ${lastName}`;
+    return `${firstName} ${lastName}`;
 }
