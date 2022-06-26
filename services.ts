@@ -80,13 +80,8 @@ export function getClassYoungestStudent(classroom: Classroom): any {
 }
 
 export function printSchool(school: School): void {
-    console.log("School data:");
-    console.log("============");
-    console.log(school.name);
-    console.log(school.address);
-    console.log(school.phone);
-    console.log("\nClasses");
-    console.log("============");
+    
+    console.log(`School data:\n==========\n${school.name}\n${school.address}\n${school.phone}\n\nClasses\n==========`);
 
     school.classes.forEach(function (classRoom, index) {
         console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.fullName}, ${classRoom.teacher.professions}`)
