@@ -71,4 +71,15 @@ export function printSchool(school: School): void {
     console.log(school.name);
     console.log(school.address);
     console.log(school.phone);
+    console.log("Classes");
+    console.log("============");
+    school.classes.forEach(function (value, i) {
+        //console.log('%d: %s', i + 1, value);
+        console.log(`Class ${i + 1}: ${value.name}\nTeacher: ${value.teacher.firstName} ${value.teacher.lastName}, ${value.teacher.professions}`)
+        value.students.forEach(function (student, i) {
+            //console.log('%d: %s', i, value);
+            console.log(`${i +1}: ${student.firstName} ${student.lastName}: \${student.age}`)
+
+        });
+    });
 }
