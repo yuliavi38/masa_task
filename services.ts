@@ -3,7 +3,7 @@
 
 import { firstNames, Geography, lastNames, Mathematics, History } from "./constants";
 import { Classroom, School, Student, Teacher } from "./entities";
-import { getRandomBirthDate, getRandomValueFromArray } from "./helpers";
+import { getRandomBirthDate, getRandomValueFromArray, fullName } from "./helpers";
 
 export function initializeSchool(): School {
     const student1: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
@@ -18,12 +18,17 @@ export function initializeSchool(): School {
     const student7: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student8: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
 
+    const student9: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
+    const student10: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
+    const student11: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
+    const student12: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
+
     const teacher2: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [Geography]);
     const teacher3: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [History]);
 
     const mathClass: Classroom = createClassroom("Math", teacher1, [student1, student2, student3, student4]);
-    const geographyClass: Classroom = createClassroom("Geography", teacher1, [student5, student6, student7, student8]);
-    const historyClass: Classroom = createClassroom("History", teacher3, [student5, student6, student7, student8]);
+    const geographyClass: Classroom = createClassroom("Geography", teacher2, [student5, student6, student7, student8]);
+    const historyClass: Classroom = createClassroom("History", teacher3, [student9, student10, student11, student12]);
 
     return {
         name: "Big school",
@@ -41,6 +46,7 @@ function createTeacher(firstName: string, lastName: string, professions: string[
     return {
         firstName: firstName,
         lastName: lastName,
+        fullName: fullName(firstName, lastName), 
         professions: professions
     };
 }
@@ -50,8 +56,12 @@ function createStudent(firstName: string, lastName: string, birthDate: Date): St
         firstName: firstName,
         lastName: lastName,
         birthDate: birthDate,
-        age: () => { 
-            return 0;
+        fullName: fullName(firstName, lastName), 
+        age: function () {
+            let ageDifferenceInMilliseconds = Date.now() - this.birthDate.getTime();
+            let ageDate = new Date(ageDifferenceInMilliseconds);
+            let ageNow = Math.abs(ageDate.getUTCFullYear() - 1970);
+            return ageNow 
         }
     };
 }
@@ -74,14 +84,13 @@ export function printSchool(school: School): void {
     console.log(school.name);
     console.log(school.address);
     console.log(school.phone);
-    console.log("Classes");
+    console.log("\nClasses");
     console.log("============");
-    school.classes.forEach(function (value, i) {
-        //console.log('%d: %s', i + 1, value);
-        console.log(`Class ${i + 1}: ${value.name}\nTeacher: ${value.teacher.firstName} ${value.teacher.lastName}, ${value.teacher.professions}`)
-        value.students.forEach(function (student, i) {
-            //console.log('%d: %s', i, value);
-            console.log(`${i +1}: ${student.firstName} ${student.lastName}: \${student.age}`)
+
+    school.classes.forEach(function (classRoom, index) {
+        console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.firstName} ${classRoom.teacher.lastName}, ${classRoom.teacher.professions}`)
+        classRoom.students.forEach(function (student, index) {
+            console.log(`${index+1}: ${student.firstName} ${student.lastName}: ${student.age()}`)
 
         });
     });
