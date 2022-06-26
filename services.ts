@@ -1,7 +1,7 @@
 // Ideas:
 // Build dynamically created classmates: collection of first names, collection of lastnames, randomly pick birth date
 
-import { firstNames, Geography, lastNames, Mathematics } from "./constants";
+import { firstNames, Geography, lastNames, Mathematics, History } from "./constants";
 import { Classroom, School, Student, Teacher } from "./entities";
 import { getRandomBirthDate, getRandomValueFromArray } from "./helpers";
 
@@ -19,6 +19,7 @@ export function initializeSchool(): School {
     const student8: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
 
     const teacher2: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [Geography]);
+    const teacher3: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [History]);
 
     const mathClass: Classroom = createClassroom("Math", teacher1, [student1, student2, student3, student4]);
     const geographyClass: Classroom = createClassroom("Geography", teacher1, [student5, student6, student7, student8]);
