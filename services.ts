@@ -74,8 +74,9 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
     };
 }
 
-export function getClassYoungestStudent(classroom: Classroom): string {
-    return classroom.students[1].firstName;
+export function getClassYoungestStudent(classroom: Classroom): any {
+   classroom.students.sort((current,next)=>current.age<next.age ? 1 : -1)
+   return `${classroom.students[0].fullName}`;
 }
 
 export function printSchool(school: School): void {
