@@ -22,6 +22,6 @@ export type Classroom = {
 export type School = {
     name: string;
     address: string;
-    phone: string;
+    phone: string|number;
     classes: Classroom[];
 }

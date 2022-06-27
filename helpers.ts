@@ -12,3 +12,15 @@ export function getRandomBirthDate(): Date {
 export function fullName(firstName: string, lastName: string): any {
     return `${firstName} ${lastName}`;
 }
+
+export function RandomNumbersOfStudents(): any {
+    const result: number = 1+(Math.floor(Math.random() * 29));
+    return result;
+}
+
+export function RandomSubject(): any {
+ let subjectsArray=['History','Geography', 'Mathematics', 'Literature', 'Physics'];
+ let myrandom=(Math.floor(Math.random() * subjectsArray.length));
+    return subjectsArray[myrandom]
+
+}
