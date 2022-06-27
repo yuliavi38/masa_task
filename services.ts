@@ -12,19 +12,17 @@ export function initializeSchool(): School {
     const student4: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
 
     const teacher1: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [Mathematics]);
+    const teacher2: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [Geography]);
+    const teacher3: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [History]);
 
     const student5: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student6: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student7: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student8: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
-
     const student9: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student10: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student11: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
     const student12: Student = createStudent(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), getRandomBirthDate());
-
-    const teacher2: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [Geography]);
-    const teacher3: Teacher = createTeacher(getRandomValueFromArray(firstNames), getRandomValueFromArray(lastNames), [History]);
 
     const mathClass: Classroom = createClassroom("Math", teacher1, [student1, student2, student3, student4]);
     const geographyClass: Classroom = createClassroom("Geography", teacher2, [student5, student6, student7, student8]);
@@ -74,9 +72,10 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
     };
 }
 
-export function transferStudent(fullName: string, fromClassroom: Classroom, toClassroom: Classroom): any {
+export function transferStudent(fullStudentName: any, fromClassroom: Classroom, toClassroom: Classroom): any {
     let resultArray = fromClassroom.students.map(function(student,index): any {
-        if (`${student.firstName} ${student.lastName}`===fullName) {return [student, index]};
+
+        if (student.fullName === fullStudentName) {return [student, index]};
     });
     let unpackedArray = resultArray[0];
     let targetindex = unpackedArray[1];
@@ -85,6 +84,7 @@ export function transferStudent(fullName: string, fromClassroom: Classroom, toCl
     fromClassroom.students.splice(targetindex,1);
     toClassroom.students.push(targetStudent);
 }
+
 
 export function getClassYoungestStudent(classroom: Classroom): any {
    classroom.students.sort((current,next)=>current.age()>next.age() ? 1 : -1)
