@@ -1,6 +1,7 @@
 export const Mathematics: string = "Mathematics";
 export const Hebrew: string = "Hebrew";
 export const Geography: string = "Geography";
+// History constant has been uncommented here
 export const History: string = "History";
 export const Chemistry: string = "Chemistry";
 export const Physics: string = "Physics";

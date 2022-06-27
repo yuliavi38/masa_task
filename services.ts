@@ -1,6 +1,7 @@
 // Ideas:
 // Build dynamically created classmates: collection of first names, collection of lastnames, randomly pick birth date
 
+// History has been added here into import statement in order to function properly
 import { firstNames, Geography, lastNames, Mathematics, History } from "./constants";
 import { Classroom, School, Student, Teacher } from "./entities";
 import { getRandomBirthDate, getRandomValueFromArray, fullName, RandomNumbersOfStudents, RandomSubject } from "./helpers";
@@ -109,8 +110,6 @@ export function printSchool(school: School): void {
 
 })
 }
-
-
 
 export function dynamicallySchool(numbersOfClass:number,nameSchool:string,phoneNumber:string|number,adress:string): School {
     
