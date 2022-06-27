@@ -74,6 +74,17 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
     };
 }
 
+export function transferStudent(fullName: string, fromClassroom: Classroom, toClassroom: Classroom): any {
+    let resultArray = fromClassroom.students.map(function(student,index): any {
+        if (`${student.firstName} ${student.lastName}`===fullName) {return [student, index]};
+    });
+    let targetindex = resultArray[1];
+    let targetStudent = resultArray[0];
+    fromClassroom.students.splice(targetindex,1);
+
+    toClassroom.students.push(targetStudent[0])
+}
+
 export function getClassYoungestStudent(classroom: Classroom): any {
    classroom.students.sort((current,next)=>current.age()>next.age() ? 1 : -1)
    return  classroom.students[0].fullName;
@@ -97,3 +108,4 @@ export function printSchool(school: School): void {
 
 })
 }
+
