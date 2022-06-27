@@ -75,19 +75,25 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
 }
 
 export function getClassYoungestStudent(classroom: Classroom): any {
-   classroom.students.sort((current,next)=>current.age<next.age ? 1 : -1)
-   return `${classroom.students[0].fullName}`;
+   classroom.students.sort((current,next)=>current.age()>next.age() ? 1 : -1)
+   return  classroom.students[0].fullName;
 }
 
 export function printSchool(school: School): void {
     
     console.log(`School data:\n==========\n${school.name}\n${school.address}\n${school.phone}\n\nClasses\n==========`);
+    let sortedClass = school.classes.sort((current,next)=>current.name.toLowerCase()>next.name.toLowerCase() ? 1 : -1);
+    
+    sortedClass.forEach(function (classRoom, index) {
+        console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.fullName}, ${classRoom.teacher.professions}`);
+        const sortedNames = classRoom.students.sort((current, next) => {
+            const result = current.lastName.localeCompare(next.lastName);
+            return result !== 0 ? result : current.firstName.localeCompare(next.firstName);
+          })
 
-    school.classes.forEach(function (classRoom, index) {
-        console.log(`Class ${index + 1}: ${classRoom.name}\nTeacher: ${classRoom.teacher.fullName}, ${classRoom.teacher.professions}`)
-        classRoom.students.forEach(function (student, index) {
+        sortedNames.forEach(function (student, index) {
             console.log(`${index+1}: ${student.fullName}: ${student.age()}`)
-
         });
-    });
+
+})
 }
