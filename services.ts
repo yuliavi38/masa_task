@@ -78,11 +78,12 @@ export function transferStudent(fullName: string, fromClassroom: Classroom, toCl
     let resultArray = fromClassroom.students.map(function(student,index): any {
         if (`${student.firstName} ${student.lastName}`===fullName) {return [student, index]};
     });
-    let targetindex = resultArray[1];
-    let targetStudent = resultArray[0];
-    fromClassroom.students.splice(targetindex,1);
+    let unpackedArray = resultArray[0];
+    let targetindex = unpackedArray[1];
+    let targetStudent = unpackedArray[0];
 
-    toClassroom.students.push(targetStudent[0])
+    fromClassroom.students.splice(targetindex,1);
+    toClassroom.students.push(targetStudent);
 }
 
 export function getClassYoungestStudent(classroom: Classroom): any {
