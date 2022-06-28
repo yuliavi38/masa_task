@@ -10,4 +10,4 @@ printSchool(school);
 
 console.log(`The youngest student in the ${school.classes[0].name} class is ${getClassYoungestStudentFullName(school.classes[0])}`);
 
-printSchool(dynamicallySchool(5,'Sunny Education',666777,'Tel Aviv'));
+printSchool(dynamicallySchool(2,'Sunny Education','+999887765','Tel Aviv'));

@@ -1,7 +1,5 @@
-// Ideas:
-// Build dynamically created classmates: collection of first names, collection of lastnames, randomly pick birth date
+// Exercise 2. To fix the problem History has been added here into import statement
 
-// History has been added here into import statement in order to function properly
 import { firstNames, Geography, lastNames, Mathematics, History } from "./constants";
 import { Classroom, School, Student, Teacher } from "./entities";
 import { getRandomBirthDate, getRandomValueFromArray, fullName, RandomNumbersOfStudents, RandomSubject } from "./helpers";
@@ -73,19 +71,14 @@ function createClassroom(name: string, teacher: Teacher, students: Student[]): C
     };
 }
 
-export function transferStudent(fullStudentName: any, fromClassroom: Classroom, toClassroom: Classroom): any {
-    let resultArray = fromClassroom.students.map(function(student,index): any {
-
-        if (student.fullName === fullStudentName) {return [student, index]};
+export function transferStudent(fullStudentName: any, fromClassroom: Classroom, toClassroom: Classroom): void {
+    fromClassroom.students.map(function(student,index): void {
+        if (student.fullName === fullStudentName) {
+            fromClassroom.students.splice(index,1);
+            toClassroom.students.push(student);
+        };
     });
-    let unpackedArray = resultArray[0];
-    let targetindex = unpackedArray[1];
-    let targetStudent = unpackedArray[0];
-
-    fromClassroom.students.splice(targetindex,1);
-    toClassroom.students.push(targetStudent);
 }
-
 
 export function getClassYoungestStudent(classroom: Classroom): any {
    classroom.students.sort((current,next)=>current.age()>next.age() ? 1 : -1)
